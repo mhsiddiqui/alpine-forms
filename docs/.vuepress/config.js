@@ -7,6 +7,9 @@ export default defineUserConfig({
 
   title: 'Alpine-forms',
   description: 'An AlpineJS forms Library',
+  site: {
+    base: '/alpine-forms/',
+  },
 
   theme: defaultTheme({
     logo: '/images/hero.png',
