@@ -15,7 +15,7 @@ const fieldState = {
 const formConfig = {
     validationOnSubmit: false,
     validations: {},
-    fieldChangeEnabled: false,
+    fieldChangeEventEnabled: false,
     fieldChangeEventName: 'field-change',
     fieldChangeHasAllData: false
 };
@@ -24,10 +24,9 @@ export const AlpineForm = (
     data,
     options = {
         schema: {},
-        onSubmit: undefined,
         config: formConfig,
         extras: {},
-    },
+    }
 ) => ({
     data: data,
     schema: options.schema,
@@ -37,13 +36,9 @@ export const AlpineForm = (
         fields: {},
     },
     extras: options.extras,
-    onSubmit: undefined,
-    init() {
-        return this;
-    },
     updateSchema(addition = {}, removal = []) {
         const updatedSchema = {...this.schema, ...addition};
-        for (const key in removal) {
+        for (const key of removal) {
             delete updatedSchema[key];
             delete this.data[key];
         }
@@ -87,7 +82,7 @@ export const AlpineForm = (
             for (let field in this.config.validations) {
                 if (this.getFieldState(field).isValid) {
                     let validationResult = this.config.validations[field](
-                        this.data[field],
+                        this.data[field]
                     );
                     if (validationResult !== undefined) {
                         this.setFormState({isValid: false});
@@ -135,18 +130,22 @@ export const AlpineForm = (
         };
     },
     async submit(onSubmit) {
-        if (this.config.validationOnSubmit) {
-            this.runValidations();
-        }
-        this.setFormState({isSubmitting: true});
+        this.runValidations();
         if (this.getFormState().isValid) {
+            this.setFormState({isSubmitting: true});
             try {
                 await onSubmit(this.data);
-                this.setFormState({...formState, isSubmitted: true, isValid: true});
+                this.setFormState({
+                    ...formState,
+                    isSubmitted: true,
+                    isValid: true,
+                });
             } catch (error) {
-                this.setFormState(
-                    {...formState, isValid: false, error: 'There was error while submitting your form'}
-                );
+                this.setFormState({
+                    ...formState,
+                    isValid: false,
+                    error: 'There was an error while submitting your form',
+                });
             }
         }
     },
@@ -156,8 +155,8 @@ export const AlpineForm = (
             type: type,
             value: this.getValue(field),
             ...extras,
-            ...this.extras
-        }
+            ...this.extras,
+        };
 
         if (this.config.fieldChangeHasAllData) {
             data['formData'] = this.data;
@@ -172,5 +171,5 @@ export const AlpineForm = (
     },
     trigger(element, eventData = {}) {
         element.$dispatch(this.getEventName(eventData), eventData);
-    }
+    },
 });

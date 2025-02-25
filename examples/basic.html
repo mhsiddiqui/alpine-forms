@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Alpine Forms</title>
+</head>
+<body>
+<form x-data="basicForm" @submit.prevent="form.submit(submitFunction)">
+    <div class="p-4">
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input x-register:form="form.field('email')" class="input" type="email" placeholder="Email">
+            </div>
+            <div x-show="!form.getFieldState('email').isValid"
+                   class="text-danger"
+                   x-text="form.getFieldState('email').error"></div>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input x-register:form="form.field('password')" class="input" type="password" placeholder="Password">
+            </div>
+            <div x-show="!form.getFieldState('password').isValid"
+                   class="text-danger"
+                   x-text="form.getFieldState('password').error"></div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Submit</button>
+            </div>
+            <div class="control">
+                <button class="button is-link is-light">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/joi@17.13.3/dist/joi-browser.min.js" defer></script>
+<script src="/dist/alpine-forms.umd.js"></script>
+<script type="module" src="/examples/js/basic.js"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
+</body>
+</html>
