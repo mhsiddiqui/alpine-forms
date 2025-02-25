@@ -1,29 +1,30 @@
----
-home: true
-title: Home
-heroImage: /images/hero.png
-actions:
-  - text: Get Started
-    link: /get-started.html
-    type: primary
+# Introduction
 
-  - text: Introduction
-    link: introduction.html
-    type: secondary
+AlpineForm is a lightweight and flexible form-handling library designed for Alpine.js. It simplifies form state management and validation, providing an intuitive way to handle user inputs efficiently. With built-in schema validation using Joi, custom validation options, and real-time field state tracking, AlpineForm enhances the form experience in Alpine.js applications.
 
-features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
-  - title: Bundlers
-    details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
+## Key Features:
 
-footer: MIT Licensed | Copyright © 2025 Alpine-forms
----
+* **Schema Validation**: Define validation rules using Joi to ensure data integrity.
+* **Custom Validation**: Easily extend validation logic with custom rules.
+* **Form State Management**: Keep track of the entire form’s state, including validation status.
+* **Field State Tracking**: Monitor individual field values, errors, and interactions.
+* **Event Handling**: Trigger actions when a field value changes, making dynamic forms easier to manage.
+
+AlpineForm is designed to be simple yet powerful, helping developers manage forms in Alpine.js without the complexity of larger frameworks.
+
+# Getting Started
+
+To install it with npm, run following
+
+```shell
+npm install alpine-forms
+```
+
+Or to use via CDN
+
+```html
+<script
+  defer
+  src="https://unpkg.com/alpinejs-form-validation@latest/dist/validation.min.js"
+></script>
+```

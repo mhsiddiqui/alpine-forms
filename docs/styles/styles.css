@@ -1,0 +1,19 @@
+.text-red {
+    color: red
+}
+
+.mt-1 {
+    margin-top: 10px
+}
+
+.flex {
+    display: flex;
+}
+
+.border {
+    border: 1px solid black;
+}
+
+.p-1 {
+    padding: 10px;
+}

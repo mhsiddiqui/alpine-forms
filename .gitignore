@@ -131,3 +131,6 @@ dist
 
 .nvmrc
 .idea*
+
+docs/.vuepress/public/js/*.es.js
+docs/.vuepress/public/js/*.umd.js
