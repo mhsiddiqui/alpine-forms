@@ -17,3 +17,15 @@
 .p-1 {
     padding: 10px;
 }
+
+.app-name-link > img {
+    height: 50px;
+}
+
+.app-name-link {
+    border-bottom: 1px solid black;
+}
+
+.octo-arm {
+    fill: none;
+}

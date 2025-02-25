@@ -27,7 +27,7 @@ build({
     entryPoints: [`src/cdn.js`],
     outfile: `dist/${pluginName}.min.js`,
     bundle: true,
-    // minify: true,
+    minify: true,
     sourcemap: false,
     platform: 'browser',
     define: { CDN: 'true' },
@@ -37,7 +37,7 @@ build({
 // Example
 build({
     entryPoints: [`src/cdn.js`],
-    outfile: `examples/${pluginName}.js`,
+    outfile: `docs/js/${pluginName}.js`,
     bundle: true,
     minify: false,
     sourcemap: false,

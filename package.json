@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
-    "docs:dev": "npm run build && cp dist/* docs/js/ && docsify serve docs"
+    "docs:dev": "npm run build && docsify serve docs"
   },
   "peerDependencies": {
     "alpinejs": "^3.14.8"
