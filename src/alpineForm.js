@@ -1,175 +1,311 @@
-const formState = {
+const createFormState = () => ({
     isValid: true,
     isSubmitting: false,
     isSubmitted: false,
-    isDirty: false,
-    error: '',
-};
+    error: null,
+    submitAttempts: 0
+});
 
-const fieldState = {
+const createFieldState = () => ({
     isValid: true,
     isDirty: false,
-    error: '',
-};
+    isTouched: false,
+    error: null
+});
 
-const formConfig = {
-    validationOnSubmit: false,
+const defaultConfig = {
+    validateOnChange: true,
+    validateOnBlur: true,
     validations: {},
-    fieldChangeEventEnabled: false,
-    fieldChangeEventName: 'field-change',
-    fieldChangeHasAllData: false
+    enableFieldEvents: false,
+    fieldEventName: 'field-change',
+    includeFullDataInEvents: false,
+    showErrorsOnSubmit: true
 };
 
 export const AlpineForm = (
-    data,
+    data = {},
     options = {
         schema: {},
-        config: formConfig,
+        config: {},
         extras: {},
     }
 ) => ({
-    data: data,
-    schema: options.schema,
-    config: {...formConfig, ...options.config},
+    fields: [],
+    data: {...data},
+    schema: options.schema || {},
+    config: {...defaultConfig, ...options.config},
     state: {
-        form: formState,
-        fields: {},
+        form: createFormState(),
+        fields: {}
     },
-    extras: options.extras,
-    updateSchema(addition = {}, removal = []) {
-        const updatedSchema = {...this.schema, ...addition};
-        for (const key of removal) {
-            delete updatedSchema[key];
-            delete this.data[key];
-        }
-        this.schema = updatedSchema;
-    },
+    extras: options.extras || {},
+
     setFormState(state = {}) {
-        this.state.form = {...this.state.form, ...state};
+        this.state.form = {
+            ...this.state.form,
+            ...state
+        };
     },
+
     setFieldState(field, state = {}) {
-        this.state.fields[field] = {...this.state.fields[field], ...state};
+        if (!this.state.fields[field]) {
+            this.state.fields[field] = createFieldState();
+        }
+        this.state.fields[field] = {
+            ...this.state.fields[field],
+            ...state
+        };
     },
-    getSchema() {
-        if (this.schema) {
-            return joi.object(this.schema);
+
+    markFieldTouched(field) {
+        this.setFieldState(field, {
+            isTouched: true,
+            isDirty: this.getValue(field) !== ''
+        });
+
+        if (this.config.validateOnBlur) {
+            this.validateField(field);
         }
     },
-    runValidations() {
-        let schema = this.getSchema();
-        if (schema) {
-            let result = schema.validate(this.data, {
-                abortEarly: false,
-                allowUnknown: true,
+
+    triggerFieldChange(field, event, options = {}) {
+        if (this.config.enableFieldEvents) {
+            const eventData = this.eventData(field, 'change', {
+                originalEvent: event,
+                ...options
             });
-            if (result.error) {
-                this.setFormState({isValid: false});
-                for (let error of result.error.details) {
-                    this.setFieldState(error.context.key, {
-                        isValid: false,
-                        error: error.message,
-                    });
-                }
-            } else {
-                this.setFormState({isValid: true, error: ''});
-                for (let field in this.schema) {
-                    this.setFieldState(field, {isValid: true, error: ''});
-                }
-            }
-            this.data = result.value;
-        }
-        if (this.config.validations) {
-            for (let field in this.config.validations) {
-                if (this.getFieldState(field).isValid) {
-                    let validationResult = this.config.validations[field](
-                        this.data[field]
-                    );
-                    if (validationResult !== undefined) {
-                        this.setFormState({isValid: false});
-                        this.setFieldState(field, {
-                            isValid: false,
-                            error: validationResult.message,
-                        });
-                    }
-                }
-            }
+
+            this.trigger(event.target, eventData);
         }
     },
+
+    validateField(field) {
+        let isValid = true;
+        let error = null;
+
+        // Joi schema validation
+        if (this.schema && this.schema[field]) {
+            const fieldSchema = this.getSchema().extract([field]);
+            const {error: schemaError} = fieldSchema.validate(this.data[field]);
+
+            if (schemaError) {
+                isValid = false;
+                error = schemaError.details[0].message;
+            }
+        }
+
+        // Custom validations
+        if (isValid && this.config.validations[field]) {
+            const customValidationResult = this.config.validations[field](this.data[field]);
+            if (customValidationResult) {
+                isValid = false;
+                error = customValidationResult.message;
+            }
+        }
+
+        this.setFieldState(field, {
+            isValid,
+            error
+        });
+
+        return isValid;
+    },
+
+    getSchema() {
+        if (this.schema && window.joi) {
+            return window.joi.object(this.schema);
+        }
+        return null;
+    },
+
+    runValidations() {
+        let overallValid = true;
+
+        // Reset form validity
+        this.setFormState({ isValid: true, error: null });
+
+        // Validate each field
+        Object.keys(this.schema || {}).forEach(field => {
+            const isFieldValid = this.validateField(field);
+            if (!isFieldValid) {
+                overallValid = false;
+            }
+        });
+
+        this.setFormState({ isValid: overallValid });
+        return overallValid;
+    },
+
     setValue(field, value) {
         this.data[field] = value;
-        this.setFieldState(field, {isDirty: true});
-        if (!this.config.validationOnSubmit) {
+        this.setFieldState(field, {
+            isDirty: true,
+            isTouched: true
+        });
+
+        if (this.config.validateOnChange) {
             this.runValidations();
         }
     },
+
     getValue(field = null) {
         if (field) {
-            return this.data[field] === undefined ? '' : this.data[field];
-        } else {
-            let fieldData = {};
-            for (let field in this.schema) {
-                fieldData[field] = this.data[field];
-            }
-            return fieldData;
+            return this.data[field] ?? '';
         }
+
+        const fieldData = {};
+        Object.keys(this.schema || {}).forEach(key => {
+            fieldData[key] = this.data[key] ?? '';
+        });
+        return fieldData;
     },
+
     getFormState() {
         return this.state.form;
     },
+
     getFieldState(field) {
-        if (this.state.fields[field] !== undefined) {
-            return {...fieldState, ...this.state.fields[field]};
-        } else {
-            return fieldState;
-        }
+        const state = this.state.fields[field]
+            ? {...createFieldState(), ...this.state.fields[field]}
+            : createFieldState();
+
+        return state;
     },
+
     field(field, extras = {}) {
+        if (!this.state.fields[field]) {
+            this.fields.push(field);
+            this.state.fields[field] = createFieldState();
+            this.runValidations();
+        }
         return {
             name: field,
             extras: extras,
         };
     },
-    async submit(onSubmit) {
-        this.runValidations();
-        if (this.getFormState().isValid) {
-            this.setFormState({isSubmitting: true});
-            try {
-                await onSubmit(this.data);
-                this.setFormState({
-                    ...formState,
-                    isSubmitted: true,
-                    isValid: true,
-                });
-            } catch (error) {
-                this.setFormState({
-                    ...formState,
-                    isValid: false,
-                    error: 'There was an error while submitting your form',
-                });
-            }
+
+    error(field, options = {isValid: false}) {
+        return {
+            name: field,
+            condition: options
         }
     },
+
+    async submit(onSubmit) {
+        // Increment submit attempts
+        this.setFormState({
+            submitAttempts: (this.state.form.submitAttempts || 0) + 1
+        });
+
+        // Run validations
+        const isValid = this.runValidations();
+
+        // Show errors if configured
+        if (this.config.showErrorsOnSubmit && !isValid) {
+            return false;
+        }
+
+        // Proceed if form is valid
+        if (isValid) {
+            this.setFormState({
+                isSubmitting: true,
+                error: null
+            });
+
+            try {
+                const result = await onSubmit(this.data);
+
+                this.setFormState({
+                    isSubmitting: false,
+                    isSubmitted: true,
+                    submissionResult: result
+                });
+
+                return result;
+            } catch (error) {
+                this.setFormState({
+                    isSubmitting: false,
+                    isValid: false,
+                    error: error.message || 'Submission failed'
+                });
+
+                throw error;
+            }
+        }
+
+        return false;
+    },
+
+    reset(fields = null) {
+        if (fields) {
+            // Reset specific fields
+            fields.forEach(field => {
+                delete this.data[field];
+                this.state.fields[field] = createFieldState();
+            });
+        } else {
+            // Reset entire form
+            this.data = {};
+            this.state = {
+                form: createFormState(),
+                fields: {},
+            };
+        }
+    },
+
     eventData(field, type = 'change', extras = {}) {
-        let data = {
-            field: field,
-            type: type,
+        const data = {
+            field,
+            type,
             value: this.getValue(field),
             ...extras,
             ...this.extras,
         };
 
-        if (this.config.fieldChangeHasAllData) {
-            data['formData'] = this.data;
+        if (this.config.includeFullDataInEvents) {
+            data.formData = this.data;
         }
 
         return data;
     },
-    getEventName(eventData) {
-        if (eventData.type === 'change') {
-            return this.config.fieldChangeEventName;
-        }
+
+    hasErrors() {
+        return Object.values(this.state.fields)
+            .some(fieldState => !fieldState.isValid);
     },
-    trigger(element, eventData = {}) {
-        element.$dispatch(this.getEventName(eventData), eventData);
+
+    addField(field, schema = null, options = {}) {
+        // Add to fields array if not already present
+        if (!this.fields.includes(field)) {
+            this.fields.push(field);
+        }
+
+        // Update schema if validation is provided
+        if (schema && window.joi) {
+            this.schema[field] = schema;
+        }
+
+        // Initialize field state
+        this.state.fields[field] = createFieldState();
+
+        // Set initial value if provided in options
+        if (options.value !== undefined) {
+            this.setValue(field, options.value);
+        }
+
+        // Add custom validation if provided
+        if (options.validation) {
+            if (!this.config.validations) {
+                this.config.validations = {};
+            }
+            this.config.validations[field] = options.validation;
+        }
+
+        // Return the field configuration for chaining
+        return {
+            name: field,
+            extras: options
+        };
     },
 });

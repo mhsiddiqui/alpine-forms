@@ -42,7 +42,7 @@ The options object supports the following properties:
 After you have created form, you need to register fields in that form
 
 ```html
-<form @submit.prevent="form.submit(submitFunctionHandler)">
+<form @submit.prevent="form.submit((data) => submitHandler(data))">
     <input x-register:form_name="form_name.field('field_1')" type="text" placeholder="Placeholder">
     <input x-register:form_name="form_name.field('field_2')" type="text" placeholder="Placeholder">
     <button>Save</button>

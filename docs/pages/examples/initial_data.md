@@ -1,10 +1,10 @@
-# Basic Example
+# Initial Data
 
-A simple example without validation and no initial data is show below. 
+For loading initial data in your form, you need to pass initial data when creating form. For detail, see below example
 
 <!-- tabs:start -->
 #### **Output**
-<div x-data="basicForm()">
+<div x-data="initialData()">
     <form class="pure-form" @submit.prevent="form.submit((data) => submitHandler(data))">
         <div class="p-4">
             <div class="pure-u-1 pure-u-md-1-3">
@@ -25,11 +25,11 @@ A simple example without validation and no initial data is show below.
     </pre>
 </div>
 #### **JavaScript**
-[filename](../../js/basic.js ':include')
+[filename](../../js/initial_data.js ':include')
 
 #### **HTML**
 ```html
-<div x-data="basicForm()">
+<div x-data="initialData()">
     <form class="pure-form" @submit.prevent="form.submit((data) => submitHandler(data))">
         <div class="p-4">
             <div class="pure-u-1 pure-u-md-1-3">

@@ -5,9 +5,16 @@
     <title>Document</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="description" content="Description">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css"/>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+          integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <style>
+        :root {
+            --docsifytabs-border-color: #ededed;
+            --docsifytabs-tab-highlight-color: purple;
+        }
+    </style>
 </head>
 <body>
 <div id="app"></div>
@@ -20,7 +27,7 @@
         name: 'Alpine-Forms',
         coverpage: true,
         alias: {
-          '/.*/_sidebar.md': '/_sidebar.md'
+            '/.*/_sidebar.md': '/_sidebar.md'
         },
         // autoHeader: true,
         loadSidebar: true,
@@ -28,14 +35,24 @@
             noData: 'No results!',
             paths: 'auto',
             placeholder: 'Search'
+        },
+        tabs: {
+            persist: true, // default
+            sync: true, // default
+            theme: 'material', // default
+            tabComments: true, // default
+            tabHeadings: true // default
         }
     }
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify@4" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
 <script src=" https://cdn.jsdelivr.net/npm/joi@17.13.3/dist/joi-browser.min.js" defer></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js" defer></script>
 <script src="js/alpine.forms.js" defer></script>
 <script src="js/basic.js" defer></script>
+<script src="js/initial_data.js" defer></script>
+<script src="js/schema_validation.js" defer></script>
 <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>
