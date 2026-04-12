@@ -1,41 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="description" content="Description">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
-</head>
-<body>
-<div id="app"></div>
-<script>
-    window.$docsify = {
-        el: '#app',
-        auto2top: true,
-        autoHeader: true,
-        logo: 'images/hero.png',
-        name: 'Alpine-Forms',
-        coverpage: true,
-        alias: {
-          '/.*/_sidebar.md': '/_sidebar.md'
-        },
-        // autoHeader: true,
-        loadSidebar: true,
-        search: {
-            noData: 'No results!',
-            paths: 'auto',
-            placeholder: 'Search'
-        }
-    }
-</script>
-<script src="//cdn.jsdelivr.net/npm/docsify@4" defer></script>
-<script src=" https://cdn.jsdelivr.net/npm/joi@17.13.3/dist/joi-browser.min.js" defer></script>
-<script src="//unpkg.com/docsify/lib/plugins/search.min.js" defer></script>
-<script src="js/alpine.forms.js" defer></script>
-<script src="js/basic.js" defer></script>
-<script src="//unpkg.com/alpinejs" defer></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Alpine-Forms — Form management for Alpine.js</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta
+            name="description"
+            content="Lightweight form state management, validation, and submission for Alpine.js"
+        />
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
+        <link rel="stylesheet" href="styles/styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+            integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            window.$docsify = {
+                el: '#app',
+                auto2top: true,
+                autoHeader: true,
+                logo: 'images/hero.png',
+                name: 'Alpine-Forms',
+                coverpage: true,
+                alias: {
+                    '/.*/_sidebar.md': '/_sidebar.md',
+                },
+                // autoHeader: true,
+                loadSidebar: true,
+                search: {
+                    noData: 'No results!',
+                    paths: 'auto',
+                    placeholder: 'Search',
+                },
+            };
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/docsify@4" defer></script>
+        <script src="//unpkg.com/docsify/lib/plugins/search.min.js" defer></script>
+    </body>
 </html>

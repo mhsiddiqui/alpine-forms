@@ -1,0 +1,39 @@
+<p style="color: #64748b; font-size: 14px; margin-top: 0">
+    Toggle the checkbox to add/remove the phone field. Check the form data below.
+</p>
+
+<div x-data="dynamicFieldsForm">
+    <form @submit.prevent="form.submit(handleSubmit)">
+        <div class="field-group">
+            <label>Name</label>
+            <input x-register:form="form.field('name')" type="text" placeholder="Your name" />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('name').isValid"
+                x-text="form.getFieldState('name').error"
+            ></span>
+        </div>
+        <div class="field-group">
+            <label class="inline-label">
+                <input type="checkbox" @change="togglePhone()" />
+                Add phone number
+            </label>
+        </div>
+        <div class="field-group" x-show="showPhone">
+            <label>Phone</label>
+            <input
+                x-show="showPhone"
+                x-register:form="form.field('phone')"
+                type="tel"
+                placeholder="Phone number"
+            />
+        </div>
+        <div class="btn-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+    <div class="state-bar">
+        <span>Form data: <strong x-text="JSON.stringify(form.getValue())"></strong></span>
+    </div>
+</div>

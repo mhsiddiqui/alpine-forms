@@ -1,0 +1,138 @@
+/* Base */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 20px;
+    margin: 0;
+    color: #334155;
+}
+
+/* Form fields */
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    box-sizing: border-box;
+}
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Layout */
+.field-group {
+    margin-bottom: 14px;
+}
+.inline-label {
+    display: inline;
+    font-weight: normal;
+    margin-right: 12px;
+}
+
+/* Errors */
+.field-error {
+    color: #dc2626;
+    font-size: 13px;
+    display: block;
+}
+.field-hint {
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Buttons */
+button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+button[type='submit'] {
+    background: #3b82f6;
+    color: white;
+}
+button[type='submit']:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+button[type='button'] {
+    background: #e2e8f0;
+    color: #334155;
+}
+.btn-group {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+/* Debug output */
+pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+/* State bar */
+.state-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+}
+.state-bar strong {
+    color: #334155;
+}
+
+/* Dirty badge */
+.dirty-badge {
+    color: #d97706;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+/* Mode switcher */
+.mode-switcher {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.mode-switcher button {
+    padding: 5px 12px;
+    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    background: white;
+    color: #334155;
+}
+.mode-switcher button.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}

@@ -1,17 +1,71 @@
 {
-  "name": "alpine-forms",
-  "version": "0.0.1",
-  "description": "An AlpineJs forms Library",
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "build": "node scripts/build.js",
-    "docs:dev": "npm run build && docsify serve docs"
-  },
-  "peerDependencies": {
-    "alpinejs": "^3.14.8"
-  },
-  "dependencies": {
-    "esbuild": "^0.25.0"
-  }
+    "name": "alpine-forms",
+    "version": "1.0.0",
+    "description": "Lightweight form state management, validation, and submission for Alpine.js",
+    "license": "MIT",
+    "author": "Muhammad Hassan Siddiqi",
+    "keywords": [
+        "alpinejs",
+        "alpine",
+        "form",
+        "validation",
+        "state-management",
+        "reactive",
+        "form-validation",
+        "dirty-tracking"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mhsiddiqui/alpine-forms"
+    },
+    "homepage": "https://mhsiddiqui.github.io/alpine-forms/",
+    "bugs": {
+        "url": "https://github.com/mhsiddiqui/alpine-forms/issues"
+    },
+    "type": "module",
+    "main": "dist/alpine.forms.cjs.js",
+    "module": "dist/alpine.forms.esm.js",
+    "unpkg": "dist/alpine.forms.min.js",
+    "exports": {
+        ".": {
+            "import": "./dist/alpine.forms.esm.js",
+            "require": "./dist/alpine.forms.cjs.js"
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "build": "node build.js",
+        "dev": "npm run build && vite",
+        "docs:dev": "npm run build && docsify serve docs",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{js,json,md,html,css,yml}": "prettier --write"
+    },
+    "peerDependencies": {
+        "alpinejs": "^3.14.8",
+        "joi": "^18.1.2"
+    },
+    "peerDependenciesMeta": {
+        "joi": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "alpinejs": "^3.15.11",
+        "happy-dom": "^20.8.9",
+        "husky": "^9.1.7",
+        "joi": "^18.1.2",
+        "lint-staged": "^16.4.0",
+        "prettier": "^3.8.2",
+        "vite": "^8.0.7",
+        "vitest": "^4.1.4"
+    }
 }
