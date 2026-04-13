@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alpine-Forms Example</title>
+        <link rel="stylesheet" href="../styles/examples.css" />
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script>
+            const params = new URLSearchParams(location.search);
+            const name = params.get('name');
+
+            if (!name) {
+                document.getElementById('app').textContent = 'Missing ?name= parameter';
+            } else {
+                const libs = (params.get('libs') || '').split(',').filter(Boolean);
+                const libUrls = {
+                    joi: 'https://cdn.jsdelivr.net/npm/joi@17/dist/joi-browser.min.js',
+                };
+
+                function loadScript(src) {
+                    return new Promise((resolve, reject) => {
+                        const s = document.createElement('script');
+                        s.src = src;
+                        s.onload = resolve;
+                        s.onerror = reject;
+                        document.head.appendChild(s);
+                    });
+                }
+
+                (async () => {
+                    // Load manifest to get hashed alpine-forms filename
+                    const manifest = await fetch('../js/manifest.json').then((r) => r.json());
+
+                    // Load optional libs, then alpine-forms
+                    const libScripts = libs.map((lib) => libUrls[lib]).filter(Boolean);
+                    for (const src of libScripts) {
+                        await loadScript(src);
+                    }
+                    await loadScript(`../js/${manifest['alpine.forms']}`);
+
+                    // Fetch example JS and template in parallel
+                    const [jsText, tplHtml] = await Promise.all([
+                        fetch(`../js/${name}.js`).then((r) => r.text()),
+                        fetch(`${name}.tpl.html`).then((r) => r.text()),
+                    ]);
+
+                    // Register Alpine.data inside alpine:init, then inject template and start Alpine
+                    document.addEventListener('alpine:init', () => {
+                        new Function(jsText)();
+                    });
+                    document.getElementById('app').innerHTML = tplHtml;
+                    await loadScript('https://unpkg.com/alpinejs');
+                })();
+            }
+        </script>
+    </body>
+</html>

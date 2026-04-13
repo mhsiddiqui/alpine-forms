@@ -1,0 +1,59 @@
+<p style="color: #64748b; font-size: 14px; margin-top: 0">
+    Switch modes, then try typing, tabbing away, and submitting to see the difference.
+</p>
+
+<div x-data="validationModesForm">
+    <div class="mode-switcher">
+        <button @click="setMode('onChange')" :class="currentMode === 'onChange' && 'active'">
+            onChange
+        </button>
+        <button @click="setMode('onBlur')" :class="currentMode === 'onBlur' && 'active'">
+            onBlur
+        </button>
+        <button @click="setMode('onTouched')" :class="currentMode === 'onTouched' && 'active'">
+            onTouched
+        </button>
+        <button @click="setMode('onSubmit')" :class="currentMode === 'onSubmit' && 'active'">
+            onSubmit
+        </button>
+        <button @click="setMode('all')" :class="currentMode === 'all' && 'active'">all</button>
+    </div>
+    <form @submit.prevent="form.submit(handleSubmit)">
+        <div class="field-group">
+            <label>Email</label>
+            <input x-register:form="form.field('email')" type="email" placeholder="Enter email" />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('email').isValid"
+                x-text="form.getFieldState('email').error"
+            ></span>
+        </div>
+        <div class="field-group">
+            <label>Password</label>
+            <input
+                x-register:form="form.field('password')"
+                type="password"
+                placeholder="Min 8 characters"
+            />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('password').isValid"
+                x-text="form.getFieldState('password').error"
+            ></span>
+        </div>
+        <div class="btn-group">
+            <button type="submit">Submit</button>
+            <button type="button" @click="form.reset()">Reset</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+    <div class="state-bar">
+        <span>Mode: <strong x-text="currentMode"></strong></span>
+        <span>Valid: <strong x-text="form.getFormState().isValid"></strong></span>
+        <span>Dirty: <strong x-text="form.getFormState().isDirty"></strong></span>
+        <span>Email touched: <strong x-text="form.getFieldState('email').isTouched"></strong></span>
+        <span
+            >Password touched: <strong x-text="form.getFieldState('password').isTouched"></strong
+        ></span>
+    </div>
+</div>

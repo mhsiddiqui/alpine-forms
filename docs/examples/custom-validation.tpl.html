@@ -1,0 +1,31 @@
+<div x-data="basicFormNoJoi">
+    <form @submit.prevent="form.submit(submitFunction)">
+        <div class="field-group">
+            <label>Email</label>
+            <input x-register:form="form.field('email')" type="email" placeholder="Enter email" />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('email').isValid"
+                x-text="form.getFieldState('email').error"
+            ></span>
+        </div>
+        <div class="field-group">
+            <label>Password</label>
+            <input
+                x-register:form="form.field('password')"
+                type="password"
+                placeholder="Enter password"
+            />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('password').isValid"
+                x-text="form.getFieldState('password').error"
+            ></span>
+        </div>
+        <div class="btn-group">
+            <button type="submit">Save</button>
+            <button type="button" @click="form.reset(); showResult = false;">Reset</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+</div>

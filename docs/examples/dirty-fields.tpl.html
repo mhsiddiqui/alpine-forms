@@ -1,0 +1,43 @@
+<p style="color: #64748b; font-size: 14px; margin-top: 0">
+    Edit some fields and submit. Only the changed fields are sent. Save button is disabled when
+    nothing changed.
+</p>
+
+<div x-data="dirtyFieldsForm">
+    <form @submit.prevent="handleSubmit()">
+        <div class="field-group">
+            <label>
+                Name
+                <span class="dirty-badge" x-show="form.getFieldState('name').isDirty"
+                    >modified</span
+                >
+            </label>
+            <input x-register:form="form.field('name')" type="text" />
+        </div>
+        <div class="field-group">
+            <label>
+                Email
+                <span class="dirty-badge" x-show="form.getFieldState('email').isDirty"
+                    >modified</span
+                >
+            </label>
+            <input x-register:form="form.field('email')" type="email" />
+        </div>
+        <div class="field-group">
+            <label>
+                Bio
+                <span class="dirty-badge" x-show="form.getFieldState('bio').isDirty">modified</span>
+            </label>
+            <textarea
+                x-register:form="form.field('bio')"
+                placeholder="Write something..."
+            ></textarea>
+        </div>
+        <div class="btn-group">
+            <button type="submit" :disabled="!form.getFormState().isDirty">Save Changes</button>
+            <button type="button" @click="form.reset()">Discard</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+    <pre x-text="'Dirty fields: ' + JSON.stringify(form.getDirtyFields(), null, 2)"></pre>
+</div>

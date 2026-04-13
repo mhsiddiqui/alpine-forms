@@ -1,0 +1,46 @@
+<p style="color: #64748b; font-size: 14px; margin-top: 0">
+    Try email <code>taken@example.com</code> or username <code>admin</code> to trigger server
+    errors.
+</p>
+
+<div x-data="serverErrorsForm">
+    <form @submit.prevent="form.submit(handleSubmit)">
+        <div class="field-group">
+            <label>Email</label>
+            <input
+                x-register:form="form.field('email')"
+                type="email"
+                placeholder="Try: taken@example.com"
+            />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('email').isValid"
+                x-text="form.getFieldState('email').error"
+            ></span>
+        </div>
+        <div class="field-group">
+            <label>Username</label>
+            <input x-register:form="form.field('username')" type="text" placeholder="Try: admin" />
+            <span
+                class="field-error"
+                x-show="!form.getFieldState('username').isValid"
+                x-text="form.getFieldState('username').error"
+            ></span>
+        </div>
+        <div class="btn-group">
+            <button type="submit" :disabled="form.getFormState().isSubmitting">
+                <span
+                    x-text="form.getFormState().isSubmitting ? 'Registering...' : 'Register'"
+                ></span>
+            </button>
+            <button type="button" @click="form.clearErrors()">Clear Errors</button>
+            <button type="button" @click="form.reset()">Reset</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+    <div class="state-bar">
+        <span>Valid: <strong x-text="form.getFormState().isValid"></strong></span>
+        <span>Submitting: <strong x-text="form.getFormState().isSubmitting"></strong></span>
+        <span>Errors: <strong x-text="JSON.stringify(form.getErrors())"></strong></span>
+    </div>
+</div>

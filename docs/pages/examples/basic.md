@@ -1,60 +1,27 @@
-# Basic Example
+# Basic Form (Joi Validation)
+
+A login form with email and password fields validated using a Joi schema. Errors are displayed inline beneath each field. On successful submission, the form data is shown as JSON.
+
+**What this example covers:**
+
+- Creating a form with `Alpine.Form()` and a Joi schema
+- Registering fields with `x-register`
+- Displaying field errors with `getFieldState()`
+- Handling submission with `form.submit()`
+- Resetting the form with `form.reset()`
+
+## Live Demo
+
+[Basic Form Demo](../../examples/example.html?name=basic&libs=joi ':include :type=iframe width=100% height=340px')
 
 ## JavaScript
 
-[filename](../../js/basic.js ':include')
+Create the form with a Joi schema and pass `joiValidator` as the validator. The `submitFunction` receives the validated data on successful submission.
+
+[basic.js](../../js/basic.js ':include :type=code js')
 
 ## HTML
 
-```html
-<div x-data="basicForm()">
-    <form class="pure-form" @submit.prevent="form.submit(submitFunction)">
-        <div class="p-4">
-            <div class="pure-u-1 pure-u-md-1-3">
-                <label for="email">Email</label>
-                <input x-register:form="form.field('email')" class="pure-u-23-24" type="email" />
-                <span x-show="!form.getFieldState('email').isValid" class="text-red"
-                        x-text="form.getFieldState('email').error"></span>
-            </div>
-            <div class="pure-u-1 pure-u-md-1-3 mt-1">
-                <label for="password">Password</label>
-                <input x-register:form="form.field('password')" class="pure-u-23-24" type="password" />
-                <span x-show="!form.getFieldState('password').isValid" class="text-red"
-                        x-text="form.getFieldState('password').error"></span>
-            </div>
-            <div class="field is-grouped mt-1">
-                <button class="pure-button">Save</button>
-                <button class="pure-button">Cancel</button>
-            </div>
-        </div>
-    </form>
-    <pre x-show="showResult" class="mt-1 p-1 border" x-text="result">
-    </pre>
-</div>
-```
-## Result
+Each input is registered to the form using `x-register:form`. The directive value (`:form`) references the form object, and the expression (`form.field('email')`) identifies the field name. Error messages are shown conditionally using `x-show` and `x-text` bound to `getFieldState()`.
 
-<div x-data="basicForm()">
-    <form class="pure-form" @submit.prevent="form.submit(submitFunction)">
-        <div class="p-4">
-            <div class="pure-u-1 pure-u-md-1-3">
-                <label for="multi-first-name">Email</label>
-                <input x-register:form="form.field('email')" class="pure-u-23-24" type="email" />
-                <span x-show="!form.getFieldState('email').isValid" class="text-red"
-                        x-text="form.getFieldState('email').error"></span>
-            </div>
-            <div class="pure-u-1 pure-u-md-1-3 mt-1">
-                <label for="multi-first-name">Password</label>
-                <input x-register:form="form.field('password')" class="pure-u-23-24" type="password" />
-                <span x-show="!form.getFieldState('password').isValid" class="text-red"
-                        x-text="form.getFieldState('password').error"></span>
-            </div>
-            <div class="field is-grouped mt-1">
-                <button class="pure-button">Save</button>
-                <button class="pure-button">Cancel</button>
-            </div>
-        </div>
-    </form>
-    <pre x-show="showResult" class="mt-1 p-1 border" x-text="result">
-    </pre>
-</div>
+[basic.tpl.html](../../examples/basic.tpl.html ':include :type=code html')

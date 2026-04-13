@@ -1,0 +1,37 @@
+<p style="color: #64748b; font-size: 14px; margin-top: 0">
+    Edit the fields, then click Reset to restore defaults. Save updates the defaults to current
+    values.
+</p>
+
+<div x-data="resetForm">
+    <form @submit.prevent="form.submit(handleSubmit)">
+        <div class="field-group">
+            <label>
+                Name
+                <span class="dirty-badge" x-show="form.getFieldState('name').isDirty"
+                    >modified</span
+                >
+            </label>
+            <input x-register:form="form.field('name')" type="text" />
+        </div>
+        <div class="field-group">
+            <label>
+                Email
+                <span class="dirty-badge" x-show="form.getFieldState('email').isDirty"
+                    >modified</span
+                >
+            </label>
+            <input x-register:form="form.field('email')" type="email" />
+        </div>
+        <div class="btn-group">
+            <button type="submit">Save</button>
+            <button type="button" @click="form.reset()">Reset</button>
+        </div>
+    </form>
+    <pre x-show="showResult" x-text="result"></pre>
+    <div class="state-bar">
+        <span>Dirty: <strong x-text="form.getFormState().isDirty"></strong></span>
+        <span>Submitted: <strong x-text="form.getFormState().isSubmitted"></strong></span>
+        <span>Defaults: <strong x-text="JSON.stringify(form.getDefaults())"></strong></span>
+    </div>
+</div>

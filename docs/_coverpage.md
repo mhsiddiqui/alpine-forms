@@ -1,6 +1,7 @@
 <img src="https://mhsiddiqui.github.io/alpine-forms/images/hero.png" width="200" alt="Logo">
 
 # Alpine-Forms
+
 ## Easy and flexible form handling in AlpineJs
 
 <style>

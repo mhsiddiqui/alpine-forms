@@ -1,9 +1,17 @@
 .text-red {
-    color: red
+    color: red;
 }
 
 .mt-1 {
-    margin-top: 10px
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 16px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
 }
 
 .flex {
@@ -28,4 +36,146 @@
 
 .octo-arm {
     fill: none;
+}
+
+/* Live demo blocks */
+.demo-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0 24px;
+    background: #f8fafc;
+}
+
+.demo-box label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #334155;
+}
+
+.demo-box input[type='text'],
+.demo-box input[type='email'],
+.demo-box input[type='password'],
+.demo-box input[type='number'],
+.demo-box input[type='tel'],
+.demo-box textarea,
+.demo-box select {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    box-sizing: border-box;
+}
+
+.demo-box textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.demo-box .field-group {
+    margin-bottom: 14px;
+}
+
+.demo-box .field-error {
+    color: #dc2626;
+    font-size: 13px;
+    min-height: 18px;
+    display: block;
+}
+
+.demo-box .field-hint {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.demo-box button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.demo-box button[type='submit'],
+.demo-box button.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.demo-box button[type='submit']:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+.demo-box button[type='button'],
+.demo-box button.btn-secondary {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.demo-box .btn-group {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.demo-box pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+.demo-box .mode-switcher {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.demo-box .mode-switcher button {
+    padding: 5px 12px;
+    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    background: white;
+    color: #334155;
+}
+
+.demo-box .mode-switcher button.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.demo-box .state-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.demo-box .state-bar strong {
+    color: #334155;
+}
+
+.demo-box .dirty-badge {
+    color: #d97706;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
 }
