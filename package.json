@@ -1,6 +1,6 @@
 {
     "name": "alpine-forms",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Lightweight form state management, validation, and submission for Alpine.js",
     "license": "MIT",
     "author": "Muhammad Hassan Siddiqi",
