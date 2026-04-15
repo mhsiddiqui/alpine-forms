@@ -1,3 +1,4 @@
+[![CI](https://github.com/mhsiddiqui/alpine-forms/actions/workflows/ci.yml/badge.svg)](https://github.com/mhsiddiqui/alpine-forms/actions/workflows/ci.yml)
 # Alpine-Forms
 
 A lightweight form management library for [Alpine.js](https://alpinejs.dev/) — form state, validation, dirty tracking, and submission.
