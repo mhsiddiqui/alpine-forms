@@ -10,19 +10,19 @@ Add or remove fields conditionally at runtime. Use `unregister()` to clean up a 
 
 ## Live Demo
 
-[Dynamic Fields Demo](../../examples/example.html?name=dynamic-fields ':include :type=iframe width=100% height=320px')
+<iframe src="example.html?name=dynamic-fields" width="100%" height="320" frameborder="0"></iframe>
 
 ## JavaScript
 
 The phone field starts registered but gets unregistered when the checkbox is toggled off. Unregistering removes the field from the form data and state entirely.
 
-[dynamic-fields.js](../../js/dynamic-fields.js ':include :type=code js')
+<<< @/public/js/dynamic-fields.js
 
 ## HTML
 
 The phone input uses both `x-show` (to hide visually) and `x-register` (to bind to the form). When `showPhone` is false, `unregister('phone')` is called to remove it from the form.
 
-[dynamic-fields.tpl.html](../../examples/dynamic-fields.tpl.html ':include :type=code html')
+<<< @/public/examples/dynamic-fields.tpl.html{html}
 
 ## Dynamic Schema with `updateSchema()`
 

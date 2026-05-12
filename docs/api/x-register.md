@@ -29,20 +29,6 @@ The directive automatically:
 | `<select>`                | single                                                                          | Binds `:value` and `@change`                                             |
 | `<select multiple>`       | multiple                                                                        | Binds `@change` (stores array of selected values)                        |
 
-## Live Demo
-
-Edit any field and see the live JSON output below.
-
-[Field Types Demo](../../examples/example.html?name=field-types ':include :type=iframe width=100% height=580px')
-
-## JavaScript
-
-[field-types.js](../../js/field-types.js ':include :type=code js')
-
-## HTML
-
-[field-types.tpl.html](../../examples/field-types.tpl.html ':include :type=code html')
-
 ## Field Extras
 
 Pass extra data with a field that gets included in change events:

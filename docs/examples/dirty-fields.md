@@ -12,19 +12,19 @@ Track which fields have changed since the last save and send only the modified d
 
 ## Live Demo
 
-[Dirty Fields Demo](../../examples/example.html?name=dirty-fields ':include :type=iframe width=100% height=440px')
+<iframe src="example.html?name=dirty-fields" width="100%" height="440" frameborder="0"></iframe>
 
 ## JavaScript
 
 `getDirtyFields()` returns an object with only the fields that differ from their defaults. After a successful save, call `reset()` with the current values to make them the new baseline.
 
-[dirty-fields.js](../../js/dirty-fields.js ':include :type=code js')
+<<< @/public/js/dirty-fields.js
 
 ## HTML
 
 Each field label shows a "modified" badge when dirty. The submit button is disabled via `:disabled="!form.getFormState().isDirty"`. A live preview of dirty fields is shown below the form.
 
-[dirty-fields.tpl.html](../../examples/dirty-fields.tpl.html ':include :type=code html')
+<<< @/public/examples/dirty-fields.tpl.html{html}
 
 ## How Dirty Tracking Works
 

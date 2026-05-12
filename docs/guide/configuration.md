@@ -17,16 +17,16 @@ form: Alpine.Form(
 
 ## Config Options
 
-| Property                  | Type     | Default          | Description                                                       |
-| ------------------------- | -------- | ---------------- | ----------------------------------------------------------------- |
-| `validationMode`          | String   | `'onChange'`     | When to validate. See [Validation Modes](#validation-modes).      |
-| `validationOnSubmit`      | Boolean  | `false`          | **Deprecated.** Use `validationMode: 'onSubmit'` instead.         |
-| `validator`               | Function | `null`           | Schema validator function. See [Validation](pages/validation.md). |
-| `validations`             | Object   | `{}`             | Per-field custom validation functions.                            |
-| `fieldChangeEventEnabled` | Boolean  | `false`          | Dispatch a custom event when a field value changes.               |
-| `fieldChangeEventName`    | String   | `'field-change'` | Name of the dispatched change event.                              |
-| `fieldChangeHasAllData`   | Boolean  | `false`          | Include all form data in the change event payload.                |
-| `focusOnError`            | Boolean  | `false`          | Auto-focus the first invalid field when submit fails validation.  |
+| Property                  | Type     | Default          | Description                                                      |
+| ------------------------- | -------- | ---------------- | ---------------------------------------------------------------- |
+| `validationMode`          | String   | `'onChange'`     | When to validate. See [Validation Modes](#validation-modes).     |
+| `validationOnSubmit`      | Boolean  | `false`          | **Deprecated.** Use `validationMode: 'onSubmit'` instead.        |
+| `validator`               | Function | `null`           | Schema validator function. See [Validation](/guide/validation).  |
+| `validations`             | Object   | `{}`             | Per-field custom validation functions.                           |
+| `fieldChangeEventEnabled` | Boolean  | `false`          | Dispatch a custom event when a field value changes.              |
+| `fieldChangeEventName`    | String   | `'field-change'` | Name of the dispatched change event.                             |
+| `fieldChangeHasAllData`   | Boolean  | `false`          | Include all form data in the change event payload.               |
+| `focusOnError`            | Boolean  | `false`          | Auto-focus the first invalid field when submit fails validation. |
 
 ## Validation Modes
 

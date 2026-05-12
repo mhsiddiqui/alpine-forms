@@ -12,16 +12,16 @@ A login form with email and password fields validated using a Joi schema. Errors
 
 ## Live Demo
 
-[Basic Form Demo](../../examples/example.html?name=basic&libs=joi ':include :type=iframe width=100% height=340px')
+<iframe src="example.html?name=basic&libs=joi" width="100%" height="340" frameborder="0"></iframe>
 
 ## JavaScript
 
 Create the form with a Joi schema and pass `joiValidator` as the validator. The `submitFunction` receives the validated data on successful submission.
 
-[basic.js](../../js/basic.js ':include :type=code js')
+<<< @/public/js/basic.js
 
 ## HTML
 
 Each input is registered to the form using `x-register:form`. The directive value (`:form`) references the form object, and the expression (`form.field('email')`) identifies the field name. Error messages are shown conditionally using `x-show` and `x-text` bound to `getFieldState()`.
 
-[basic.tpl.html](../../examples/basic.tpl.html ':include :type=code html')
+<<< @/public/examples/basic.tpl.html{html}

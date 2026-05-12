@@ -71,7 +71,7 @@ Async validation handles race conditions automatically. If a newer validation st
 
 If you prefer declarative schema validation, you can use Joi with the built-in `joiValidator` helper.
 
-> **Important:** Joi is not bundled with Alpine-Forms. You must install it separately. See [Installation](pages/installation.md#using-joi-optional).
+> **Important:** Joi is not bundled with Alpine-Forms. You must install it separately. See [Installation](/guide/installation#using-joi-optional).
 
 ```js
 form: Alpine.Form(

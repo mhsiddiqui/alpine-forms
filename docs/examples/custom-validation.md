@@ -11,19 +11,19 @@ A login form using only custom validation functions — no external schema libra
 
 ## Live Demo
 
-[Custom Validation Demo](../../examples/example.html?name=custom-validation ':include :type=iframe width=100% height=340px')
+<iframe src="example.html?name=custom-validation" width="100%" height="340" frameborder="0"></iframe>
 
 ## JavaScript
 
 Define validation functions directly in `config.validations`. Each function receives the field value and returns `{ message }` on failure, or `undefined` on success.
 
-[custom-validation.js](../../js/custom-validation.js ':include :type=code js')
+<<< @/public/js/custom-validation.js
 
 ## HTML
 
 The template is identical to the Joi example — the HTML doesn't care which validation approach is used.
 
-[custom-validation.tpl.html](../../examples/custom-validation.tpl.html ':include :type=code html')
+<<< @/public/examples/custom-validation.tpl.html{html}
 
 ## Cross-Field Validation
 

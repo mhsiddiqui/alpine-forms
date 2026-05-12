@@ -11,19 +11,19 @@ Handle validation errors returned from an API. Use `setError()` to display serve
 
 ## Live Demo
 
-[Server Errors Demo](../../examples/example.html?name=server-errors ':include :type=iframe width=100% height=360px')
+<iframe src="example.html?name=server-errors" width="100%" height="360" frameborder="0"></iframe>
 
 ## JavaScript
 
 The `handleSubmit` callback simulates an API call. If the server returns an error, `setError()` attaches it to the relevant field. The form's `isSubmitting` state is managed automatically during async submissions.
 
-[server-errors.js](../../js/server-errors.js ':include :type=code js')
+<<< @/public/js/server-errors.js
 
 ## HTML
 
 The submit button is disabled while the form is submitting, and its label changes to show a loading state. The state bar shows live error and submission state.
 
-[server-errors.tpl.html](../../examples/server-errors.tpl.html ':include :type=code html')
+<<< @/public/examples/server-errors.tpl.html{html}
 
 ## API Reference
 
