@@ -41,7 +41,9 @@
         "test:watch": "vitest",
         "build": "node build.js",
         "dev": "npm run build && vite",
-        "docs:dev": "npm run build && docsify serve docs",
+        "docs:dev": "npm run build && vitepress dev docs",
+        "docs:build": "npm run build && vitepress build docs",
+        "docs:preview": "vitepress preview docs",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "prepare": "husky"
@@ -66,6 +68,7 @@
         "lint-staged": "^16.4.0",
         "prettier": "^3.8.2",
         "vite": "^8.0.7",
+        "vitepress": "^1.6.4",
         "vitest": "^4.1.4"
     }
 }

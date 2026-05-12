@@ -25,12 +25,12 @@ Alpine.data('myComponent', () => ({
 
 **Arguments:**
 
-| Argument         | Type   | Description                                                           |
-| ---------------- | ------ | --------------------------------------------------------------------- |
-| `data`           | Object | Initial field values. Can be empty `{}` or pre-populated.             |
-| `options.schema` | Object | Joi schema fields (used with `joiValidator`). Optional.               |
-| `options.config` | Object | Configuration overrides. See [Configuration](pages/configuration.md). |
-| `options.extras` | Object | Extra data included in field change events.                           |
+| Argument         | Type   | Description                                                         |
+| ---------------- | ------ | ------------------------------------------------------------------- |
+| `data`           | Object | Initial field values. Can be empty `{}` or pre-populated.           |
+| `options.schema` | Object | Joi schema fields (used with `joiValidator`). Optional.             |
+| `options.config` | Object | Configuration overrides. See [Configuration](/guide/configuration). |
+| `options.extras` | Object | Extra data included in field change events.                         |
 
 ## Registering Fields
 

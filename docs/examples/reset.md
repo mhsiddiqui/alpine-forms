@@ -11,19 +11,19 @@ Reset form data back to defaults and clear all validation state. Optionally pass
 
 ## Live Demo
 
-[Reset Form Demo](../../examples/example.html?name=reset ':include :type=iframe width=100% height=300px')
+<iframe src="example.html?name=reset" width="100%" height="300" frameborder="0"></iframe>
 
 ## JavaScript
 
 After a successful save, `reset()` is called with the submitted data as new defaults. This makes the saved values the new baseline for dirty tracking.
 
-[reset.js](../../js/reset.js ':include :type=code js')
+<<< @/public/js/reset.js
 
 ## HTML
 
 Each field label shows a "modified" badge when the field is dirty. The state bar displays the current dirty state, submission state, and default values.
 
-[reset.tpl.html](../../examples/reset.tpl.html ':include :type=code html')
+<<< @/public/examples/reset.tpl.html{html}
 
 ## API Reference
 

@@ -4,7 +4,7 @@ import { createHash } from 'crypto';
 import { build } from 'vite';
 
 const root = import.meta.dirname;
-const docsJsDir = resolve(root, 'docs/js');
+const docsJsDir = resolve(root, 'docs/public/js');
 
 const builds = [
     // CDN (minified)
@@ -26,7 +26,7 @@ const builds = [
             formats: ['iife'],
             name: 'AlpineForms',
         },
-        outDir: 'docs/js',
+        outDir: 'docs/public/js',
         minify: 'oxc',
     },
     // ESM + CJS

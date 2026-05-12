@@ -62,4 +62,4 @@ globalThis.joi = Joi;
 
 If Joi is not found at runtime, `joiValidator` will throw a clear error with installation instructions.
 
-> **Tip:** You don't need Joi at all. You can write your own validator function or use per-field custom validations without any external dependency. See [Validation](pages/validation.md).
+> **Tip:** You don't need Joi at all. You can write your own validator function or use per-field custom validations without any external dependency. See [Validation](/guide/validation).

@@ -11,7 +11,7 @@ Control when validation runs using the `validationMode` config option. Alpine Fo
 
 ## Live Demo
 
-[Validation Modes Demo](../../examples/example.html?name=validation-modes ':include :type=iframe width=100% height=380px')
+<iframe src="example.html?name=validation-modes" width="100%" height="380" frameborder="0"></iframe>
 
 ## How Each Mode Works
 
@@ -27,10 +27,10 @@ Control when validation runs using the `validationMode` config option. Alpine Fo
 
 The mode is set via `config.validationMode`. You can change it at runtime by updating `form.config.validationMode` and calling `form.reset()`.
 
-[validation-modes.js](../../js/validation-modes.js ':include :type=code js')
+<<< @/public/js/validation-modes.js
 
 ## HTML
 
 The state bar at the bottom shows live form and field state values so you can observe how each mode behaves.
 
-[validation-modes.tpl.html](../../examples/validation-modes.tpl.html ':include :type=code html')
+<<< @/public/examples/validation-modes.tpl.html{html}

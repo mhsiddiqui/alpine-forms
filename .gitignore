@@ -132,8 +132,8 @@ dist
 .nvmrc
 .idea*
 
-docs/.vuepress/public/js/*.es.js
-docs/.vuepress/public/js/*.umd.js
-docs/js/alpine.forms.*.min.js
-docs/js/manifest.json
+docs/public/js/alpine.forms.*.min.js
+docs/public/js/manifest.json
+docs/.vitepress/cache
+docs/.vitepress/dist
 CLAUDE.md
